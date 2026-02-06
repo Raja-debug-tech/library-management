@@ -1,0 +1,10 @@
+h3{
+  margin-top:2% ;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+option{
+   background-color:rgba(105, 105, 142, 0.808);
+    color :black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+  }
