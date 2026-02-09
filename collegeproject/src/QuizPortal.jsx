@@ -340,7 +340,7 @@ input[type="text"]:focus {
       
       <div className="button-group">
         <button className="add-quiz-btn" onClick={addquiz}>
-          ➕ Add Quiz
+          ➕ Add Quizz
         </button>
       <input type="text"  placeholder="GroupName"  onChange={(e)=>{
         setGroupname(e.target.value);
