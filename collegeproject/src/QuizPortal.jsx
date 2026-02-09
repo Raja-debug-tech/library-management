@@ -342,7 +342,7 @@ input[type="text"]:focus {
         <button className="add-quiz-btn" onClick={addquiz}>
           ➕ Add Quiz
         </button>
-      <input type="text"  placeholder="Correct Answer"  onChange={(e)=>{
+      <input type="text"  placeholder="GroupName"  onChange={(e)=>{
         setGroupname(e.target.value);
       }}/>
         <button className="post-btn" onClick={quizPost}>

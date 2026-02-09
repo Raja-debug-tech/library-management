@@ -279,15 +279,6 @@ const handleCreateGroup = () => {
            
 </div>
 
-
-
-
-{/* 
-        <label>Group Name :
-            <input type="text" placeholder="enter  groupname " onChange={(e)=>setgroup(e.target.value)}/>
-            <textarea  placeholder="write some description for the group..." onChange={(e)=>setDesc(e.target.value)}/>
-            <button onClick={creategroup}>Add group</button>
-        </label> */}
         
         </>
     );
