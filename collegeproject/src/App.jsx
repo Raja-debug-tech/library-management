@@ -8,11 +8,15 @@ import Analysis from "./Analysis";
 import QuizPortal from "./QuizPortal";
 import Stfview from "./Stfview";
 import Creategroup from "./Creategroup";
+import StudentWelcome from "./StudentWelcome";
+import StudentDash from "./StudentDash";
+import Taketest from "./Taketest";
+import StdAnalysis from "./StdAnalysis";
 function App(){
 
   const route=createBrowserRouter([
     {
-      path:'/',
+      path:'/staffdash',
       element:<StaffDashboard/>
     },
 
@@ -35,6 +39,21 @@ function App(){
           {path:'quiz', element:<QuizPortal/>},
           {path:'stfview/:id',element:<Stfview/>},
           {path:'creategroup',element:<Creategroup/>}
+      ]
+    },
+    {
+      path:'studentlogin',
+      element:<Studentlogin/>
+    },{
+      path:'/studentwelcome/:studentname',
+      element:<StudentWelcome/>
+    },{
+      // path:'/studentdash/:studentname',
+      path:'/',
+      element:<StudentDash/>,
+      children:[
+      {path:'taketest',element:<Taketest/>},
+      {path:'stdanalysis',element:<StdAnalysis/>}
       ]
     }
 

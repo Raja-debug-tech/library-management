@@ -43,7 +43,7 @@ const Analysis=()=>{
   .outlet-container {
     width: 90%;
     height: 100vh;  /* Fixed: viewport height prevents scroll */
-    max-width: 1400px;
+    max-width: 700px;
     margin: 2rem auto;  /* Centered perfectly */
     background: #f8fafc;
     border-radius: 20px;
