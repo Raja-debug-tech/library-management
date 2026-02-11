@@ -1,21 +1,24 @@
 import axios from "axios";
 import { useState } from "react";
 import college_logo from './assets/college_logo.png'
+import { useNavigate } from "react-router-dom";
 const Studentlogin=()=>{
 
-    const[email,setMail]=useState();
+    const[studentname,setstdName]=useState();
     const[password,setPass]=useState();
+    const nav=useNavigate();
         const bgImage = new URL(college_logo, import.meta.url).href;
 
     const studentlogin= async()=>{
 
         const api= await axios.post('http://localhost:8082/api/auth/login',{
           params:{
-          email:email ,
+          studentname:studentname ,
           password:password
         }});
         const val=api.data;
         console.log(val);
+          nav(`/studentwelcome/`+studentname);
     }
     
 
@@ -107,7 +110,7 @@ const Studentlogin=()=>{
     <div className="login-form">
      <h3>STUDENT LOGIN FORM</h3>
       <label htmlFor="email">Email or Usename</label>
-      <input id="email" type="email" placeholder="abc@gmail.com" onChange={(e)=>setMail(e.target.value)} />
+      <input id="email" type="email" placeholder="abc@gmail.com" onChange={(e)=>setstdName(e.target.value)} />
       <label htmlFor="password">Password</label>
       <input id="password" type="password" onChange={(e)=>setPass(e.target.value)} />
       <button onClick={studentlogin}>Login</button>
