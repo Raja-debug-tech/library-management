@@ -481,8 +481,90 @@ const [selectedOption, setSelectedOption] = useState(null);
                 .next-btn:disabled::before {
                 display: none;
                 }
+                              .results-container {
+                max-width: 800px;
+                margin: 2rem auto;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              }
 
+              .question-result {
+                background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+                border: 2px solid #e2e8f0;
+                border-radius: 16px;
+                padding: 1.5rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              }
 
+              .question-result:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+              }
+
+              .status-indicator {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                justify-content: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+              }
+
+              .qno {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #334155;
+                min-width: 40px;
+              }
+
+              .status-icon {
+                font-size: 2rem;
+                font-weight: bold;
+                transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                transform: scale(0);
+                opacity: 0;
+              }
+
+              .status-indicator.correct .status-icon {
+                color: #10b981;
+                transform: scale(1);
+                opacity: 1;
+                animation: pulse-correct 0.6s ease-out;
+              }
+
+              .status-indicator.wrong .status-icon {
+                color: #ef4444;
+                transform: scale(1.2) rotate(-10deg);
+                opacity: 1;
+                animation: shake-wrong 0.5s ease-in-out;
+              }
+
+              /* Keyframe animations */
+              @keyframes pulse-correct {
+                0% { transform: scale(0); opacity: 0; }
+                50% { transform: scale(1.2); }
+                100% { transform: scale(1); opacity: 1; }
+              }
+
+              @keyframes shake-wrong {
+                0%, 100% { transform: translateX(0) rotate(-10deg); }
+                25% { transform: translateX(-4px) rotate(-10deg); }
+                75% { transform: translateX(4px) rotate(-10deg); }
+              }
+
+              /* Responsive */
+              @media (max-width: 640px) {
+                .results-container {
+                  padding: 1rem;
+                  gap: 0.75rem;
+                }
+                
+                .status-indicator {
+                  gap: 0.75rem;
+                }
+              }
             `}
         </style>
         {!showres ? (
@@ -540,62 +622,23 @@ const [selectedOption, setSelectedOption] = useState(null);
       <h2>Correct Percentage: {((count/questions.length)*100)}%</h2>
     </div>
     
-    <div className="results-container">
-      {check.map((e, index) => {
-        const isCorrect = e.useranswer === e.correctanswer;
-        
-        return (
-          <div key={index} className="question-result">
-            <div className="question-header">
-              <div className="qno">Q{e.qno}</div>
-            </div>
-            
-            {/* 3-COLUMN LAYOUT */}
-            <div className="answers-grid">
-              {/* Column 1: User Answer */}
-              <div className={`answer-column ${isCorrect ? 'status-correct' : 'status-wrong'}`}>
-                <span className="status-icon">{isCorrect ? '✓' : '✗'}</span>
-                <div>
-                  <div className="answer-label">Your Answer</div>
-                  <div className="user-answer">{e.useranswer}</div>
-                </div>
-              </div>
-
-              {/* Column 2: Divider */}
-              <div className="divider">VS</div>
-
-              {/* Column 3: Correct Answer */}
-              <div className={`answer-column ${isCorrect ? 'status-correct' : 'status-correct'}`}>
-                <span className={`status-icon ${isCorrect ? 'correct' : ''}`}>
-                  {isCorrect ? '✓' : '✓'}
-                </span>
-                <div>
-                  <div className="answer-label">Correct Answer</div>
-                  <div className={isCorrect ? 'correct' : 'user-answer'}>
-                    {e.correctanswer}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Result Badge */}
-            <div className={`result-badge ${isCorrect ? 'correct-badge' : 'wrong-badge'}`}>
-              {isCorrect ? 'Correct!' : 'Wrong!'}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  </div>
+   <div className="results-container">
+  {check.map((e, index) => {
+    const isCorrect = e.useranswer === e.correctanswer;
+    
+    return (
+      <div key={index} className="question-result">
+        <div className={`status-indicator ${isCorrect ? 'correct' : 'wrong'}`}>
+          <span className="qno">Q{e.qno}</span>
+          <span className="status-icon">{isCorrect ? '✓' : '✗'}</span>
+        </div>
+      </div>
+    );
+  })}
+</div>
+</div>
 )}
 
-            {/* <div>
-                {check.map((e,index)=><div key={index}>
-                    <h2>{e.qno}</h2>
-                    <h2>{e.useranswer}</h2> 
-                    <h2>{e.correctanswer}</h2>
-                </div>)}
-            </div> */}
         
        
             
