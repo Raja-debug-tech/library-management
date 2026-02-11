@@ -128,7 +128,7 @@ h3 {
                     <td>{e.email}</td>
                     <td>{e.mobileNo}</td>
                     <td>{e.course}</td>
-                    <td><button onClick={()=>deletes(e.id)}>deletes</button></td>
+                    <td><button onClick={()=>deletes(e.id)}>Add Student</button></td>
                 </tr>
                 )}
                 </tbody>
