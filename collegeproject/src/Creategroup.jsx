@@ -279,6 +279,7 @@ const handleCreateGroup = () => {
            
 </div>
 
+<<<<<<< HEAD
 
 
 
@@ -288,6 +289,8 @@ const handleCreateGroup = () => {
             <textarea  placeholder="write some description for the group..." onChange={(e)=>setDesc(e.target.value)}/>
             <button onClick={creategroup}>Add group</button>
         </label> */}
+=======
+>>>>>>> 7e757ccbf061e1c7bd9a7a50046539a353336839
         
         </>
     );
