@@ -16,7 +16,7 @@ function App(){
 
   const route=createBrowserRouter([
     {
-      path:'/staffdash',
+      path:'/',
       element:<StaffDashboard/>
     },
 
@@ -49,7 +49,7 @@ function App(){
       element:<StudentWelcome/>
     },{
       // path:'/studentdash/:studentname',
-      path:'/',
+      // path:'/',
       element:<StudentDash/>,
       children:[
       {path:'taketest',element:<Taketest/>},
