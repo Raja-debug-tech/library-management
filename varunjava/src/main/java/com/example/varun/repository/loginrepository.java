@@ -9,4 +9,7 @@ import com.example.varun.model.loginmodel;
 public interface loginrepository extends JpaRepository<loginmodel, Long> {
 
 	Optional<loginmodel> findByEmail(String email);
+
+	Optional<loginmodel> findByName(String name);
+
 }

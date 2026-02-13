@@ -25,6 +25,11 @@ public class loginservice {
 		return user.isPresent() && user.get().getPassword().equals(password);
 	}
 
+	public boolean studentlogin(String name, String password) {
+		return false;
+
+	}
+
 	public boolean resetPassword(String email, String newPassword) {
 		Optional<loginmodel> user = loginrepository.findByEmail(email);
 		if (user.isPresent()) {
