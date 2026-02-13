@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.varun.dto.Quizdto;
+import com.example.varun.dto.mcqstudentdto;
 import com.example.varun.model.mcqquestionmodel;
 import com.example.varun.service.mcqquestionservice;
 import com.example.varun.service.questionhistoryservice;
@@ -28,29 +30,39 @@ public class mcqquestioncontroller {
 		this.historyService = historyService;
 	}
 
-	@PostMapping("/add")
-	public mcqquestionmodel addMcq(@RequestBody mcqquestionmodel mcq) {
+	// ✅ Admin post question
+	@PostMapping("/add/{grpid}")
+	public mcqquestionmodel addMcq(@RequestBody List<Quizdto> mcq, @PathVariable int grpid) {
 
-		mcqquestionmodel saved = mcqService.saveMcqQuestion(mcq);
+		mcqquestionmodel saved = mcqService.saveMcqQuestion(mcq, grpid);
 
 		historyService.saveMcqQuestionHistory(saved);
 
 		return saved;
 	}
 
+	// ✅ Admin view group questions
 	@GetMapping("/group/{groupId}")
 	public List<mcqquestionmodel> getMcqsByGroup(@PathVariable Long groupId) {
 		return mcqService.getMcqQuestionsByGroupId(groupId);
 	}
 
+	// ✅ Admin view all questions
 	@GetMapping("/all")
 	public List<mcqquestionmodel> getAllMcqs() {
 		return mcqService.getAllMcqQuestions();
 	}
 
+	// ✅ Admin delete
 	@DeleteMapping("/{id}")
 	public String deleteMcq(@PathVariable Long id) {
 		mcqService.deleteMcqQuestion(id);
 		return "MCQ question deleted successfully";
+	}
+
+	// 🔥 STUDENT SIDE (unique shuffled order for each student)
+	@GetMapping("/student/{studentId}/group/{groupId}")
+	public List<mcqstudentdto> getMcqsForStudent(@PathVariable Long studentId, @PathVariable Long groupId) {
+		return mcqService.getQuestionsForStudent(studentId, groupId);
 	}
 }
