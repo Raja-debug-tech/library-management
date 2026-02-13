@@ -40,10 +40,10 @@ public class logincontroller {
 		}
 	}
 
-	@PostMapping("/login")
-	public String login(@RequestParam String email, @RequestParam String password) {
+	@PostMapping("/studentlogin")
+	public String login(@RequestParam String username, @RequestParam String password) {
 
-		boolean success = loginservice.login(email, password);
+		boolean success = loginservice.login(username, password);
 		return success ? "Login successful" : "Invalid email or password";
 	}
 

@@ -1,24 +1,28 @@
 import axios from "axios";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const QuizPortal=()=>{
+    const{id}=useParams();
+
+    const[isShow,setIsshow]=useState(true);
     const[content,setContent]=useState([
          {
-                quiz:'',
-                option1:'',
-                option2:'',
-                option3:'',
-                option4:'',
-                answer:''
+                question:'',
+                optionA:'',
+                optionB:'',
+                optionC:'',
+                optionD:'',
+                correctOption:''
         }
     ]);
     const [formData, setFormData] = useState({
-  quiz: '',
-  option1: '',
-  option2: '',
-  option3: '',
-  option4: '',
-  answer: ''
+  question: '',
+  optionA: '',
+  optionB: '',
+  optionC: '',
+  optionD: '',
+  correctOption: ''
 });
         const [isFadingOut, setIsFadingOut] = useState(false);
     const handlechange=(e)=>{
@@ -33,13 +37,17 @@ const QuizPortal=()=>{
  
     const addquiz=()=>{
         
-        if(formData.answer==formData.option1||
-            formData.answer==formData.option2||formData.answer==formData.option3||formData.answer==formData.option4){
-        setContent(prev=>([...prev,{...formData}]));
+        if(formData.correctOption==formData.optionA||
+            formData.correctOption==formData.optionB||
+            formData.correctOption==formData.optionC||
+            formData.correctOption==formData.optionD){
+  setContent(prev => [...prev, { ...formData }]);  
+  console.log(content)
+        setIsshow(false);
             console.log(formData)
         setFormData({
-            quiz: '',
-  option1: '',option2: '',option3: '',option4: '',answer: ''
+            question: '',
+  optionA: '',optionB: '',optionC: '',optionD: '',correctOption: ''
         })
 
     }else{
@@ -52,7 +60,11 @@ const QuizPortal=()=>{
   
   try {
     // Post the entire content array
-                    const api = await axios.post(``, content);
+                   console.log("VsCode Output : ",content);
+                  setContent(prev => [...prev, { ...formData }]);  
+
+                    const api = await axios.post(`http://localhost:8082/api/mcq/add/${id}`, content
+                    );
                     
                     const responseData = api.data; // Fixed: directly access api.data
                     console.log('Quiz posted successfully:', responseData);
@@ -62,10 +74,10 @@ const QuizPortal=()=>{
                     
                     // Reset form and state after successful post
                     setContent([{
-                    quiz: '', option1: '', option2: '', option3: '', option4: '', answer: ''
+                    question: '', optionA: '', optionB: '', optionC: '', optionD: '', correctoption: ''
                     }]);
                     setFormData({
-                    quiz: '', option1: '', option2: '', option3: '', option4: '', answer: ''
+                    question: '', optionA: '', optionB: '', optionC: '', optionD: '', correctoption: ''
                     });
                     
                 } catch (error) {
@@ -324,24 +336,26 @@ input[type="text"]:focus {
     <div>
       <label htmlFor="quiz">ENTER THE Question</label>
       <textarea 
-        name="quiz" 
-        id="quiz" 
-        value={formData.quiz} 
+        name="question" 
+        id="question" 
+        value={formData.question} 
         onChange={handlechange}
         placeholder="Type your question here..."
       />
       
-      <input type="text" name="option1" placeholder="Option 1" value={formData.option1} onChange={handlechange}/>
-      <input type="text" name="option2" placeholder="Option 2" value={formData.option2} onChange={handlechange}/>
-      <input type="text" name="option3" placeholder="Option 3" value={formData.option3} onChange={handlechange}/>
-      <input type="text" name="option4" placeholder="Option 4" value={formData.option4} onChange={handlechange}/>
-      <input type="text" name="answer" placeholder="Correct Answer" value={formData.answer} onChange={handlechange}/>
+      <input type="text" name="optionA" placeholder="Option 1" value={formData.optionA} onChange={handlechange}/>
+      <input type="text" name="optionB" placeholder="Option 2" value={formData.optionB} onChange={handlechange}/>
+      <input type="text" name="optionC" placeholder="Option 3" value={formData.optionC} onChange={handlechange}/>
+      <input type="text" name="optionD" placeholder="Option 4" value={formData.optionD} onChange={handlechange}/>
+      <input type="text" name="correctOption" placeholder="Correct Answer" value={formData.correctOption} onChange={handlechange}/>
       
       <div className="button-group">
         <button className="add-quiz-btn" onClick={addquiz}>
           ➕ Add Quizz
         </button>
-    
+    {/* { isShow && <input type="text"  placeholder="GroupName"  onChange={(e)=>{
+        setGroupname(e.target.value);
+      }}/>} */}
         <button className="post-btn" onClick={quizPost}>
           🚀 Post All
         </button>
