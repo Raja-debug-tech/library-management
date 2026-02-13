@@ -16,7 +16,7 @@ function App(){
 
   const route=createBrowserRouter([
     {
-      path:'/staffdash',
+      path:'/',
       element:<StaffDashboard/>
     },
 

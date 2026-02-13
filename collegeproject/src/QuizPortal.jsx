@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 
 const QuizPortal=()=>{
-    const[groupName,setGroupname]=useState();
     const[content,setContent]=useState([
          {
                 quiz:'',
@@ -342,9 +341,7 @@ input[type="text"]:focus {
         <button className="add-quiz-btn" onClick={addquiz}>
           ➕ Add Quizz
         </button>
-      <input type="text"  placeholder="GroupName"  onChange={(e)=>{
-        setGroupname(e.target.value);
-      }}/>
+    
         <button className="post-btn" onClick={quizPost}>
           🚀 Post All
         </button>
