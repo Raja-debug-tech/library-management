@@ -6,7 +6,7 @@ const Quizhistory=()=>{
 
     const [hstry,sethstry]=useState([]);
     const[showID,setShowid]=useState();
-    const[isShow,setIshow]=useState(false);
+    const[isShow,setIshow]=useState(t);
   
     const getHistory=async ()=>{
             const api=await axios.get('http://localhost:8082/api/history/questions');
@@ -281,7 +281,7 @@ const Quizhistory=()=>{
 </style>
 
 <div className="container">
-  {!isShow ? (
+  {isShow ? (
     <div className="loading-container">
       <div className="loading-spinner"></div>
       <div className="loading-text">

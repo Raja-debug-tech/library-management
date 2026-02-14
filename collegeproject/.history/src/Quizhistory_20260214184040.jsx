@@ -4,7 +4,82 @@ import { useEffect, useState } from "react";
 
 const Quizhistory=()=>{
 
-    const [hstry,sethstry]=useState([]);
+    const [hstry,sethstry]=useState([
+        
+  
+//   {
+//     id: 9,
+//     questionTitle: null,
+//     questionDescription: "null, null, null, null",
+//     groupName: "No Group Assigned",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T17:18:37.325935"
+//   },
+//   {
+//     id: 8,
+//     questionTitle: null,
+//     questionDescription: "null, null, null, null",
+//     groupName: "No Group Assigned",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T17:14:58.321916"
+//   },
+//   {
+//     id: 7,
+//     questionTitle: "",
+//     questionDescription: "null, null, null, null",
+//     groupName: "Group ID : 1",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T17:05:51.59123"
+//   },
+//   {
+//     id: 6,
+//     questionTitle: null,
+//     questionDescription: "null, null, null, null",
+//     groupName: "No Group Assigned",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T16:50:57.342683"
+//   },
+//   {
+//     id: 5,
+//     questionTitle: null,
+//     questionDescription: "null, null, null, null",
+//     groupName: "No Group Assigned",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T16:49:52.550837"
+//   },
+//   {
+//     id: 4,
+//     questionTitle: "",
+//     questionDescription: "null, null, null, null",
+//     groupName: "Group ID : 1",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T16:46:22.301469"
+//   },
+//   {
+//     id: 3,
+//     questionTitle: null,
+//     questionDescription: "null, null, null, null",
+//     groupName: "No Group Assigned",
+// questionType: "MCQ",
+//     postedAt: "2026-02-11T16:43:06.350411"
+//   },
+//   {
+//     id: 2,
+//     questionTitle: "who is fullstack devopler",
+//     questionDescription: "1, 2, 3, 4",
+//     groupName: "Group ID : 2",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T16:03:46.79523"
+//   },
+//   {
+//     id: 1,
+//     questionTitle: null,
+//     questionDescription: "1, 2, 3, 4",
+//     groupName: "Group ID : 1",
+//     questionType: "MCQ",
+//     postedAt: "2026-02-11T16:02:18.569362"
+//   }
+]);
     const[showID,setShowid]=useState();
     const[isShow,setIshow]=useState(false);
   
@@ -13,11 +88,9 @@ const Quizhistory=()=>{
             const values=await api.data;
             sethstry(values);
             console.log(values);
-            setIshow(true);
 
     }
-      useEffect(()=>{
-      setTimeout(()=>getHistory(),2000);
+      useEffect(()getHistory(),2000);
 },[])
    
 
@@ -281,7 +354,7 @@ const Quizhistory=()=>{
 </style>
 
 <div className="container">
-  {!isShow ? (
+  {isShow ? (
     <div className="loading-container">
       <div className="loading-spinner"></div>
       <div className="loading-text">
