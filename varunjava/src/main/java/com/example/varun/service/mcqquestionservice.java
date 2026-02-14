@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.varun.dto.Quizdto;
 import com.example.varun.dto.mcqstudentdto;
+import com.example.varun.dto.studentanalysisdto;
 import com.example.varun.model.groupmodel;
 import com.example.varun.model.mcqquestionmodel;
 import com.example.varun.repository.mcqquestionrepository;
@@ -55,8 +56,13 @@ public class mcqquestionservice {
 	}
 
 	public List<mcqstudentdto> getQuestionsForStudent(Long studentId, Long groupId) {
-		// TODO Auto-generated method stub
+		// TODO: Your existing logic here
 		return null;
 	}
 
+	// STUDENT ANALYSIS METHOD
+	public studentanalysisdto getMyMcqAnalysis(String loggedEmail, Long groupId) {
+		// TODO: you will implement analysis logic later
+		return null;
+	}
 }

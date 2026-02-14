@@ -1,5 +1,6 @@
 package com.example.varun.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.varun.dto.Quizdto;
 import com.example.varun.dto.mcqstudentdto;
+import com.example.varun.dto.studentanalysisdto;
 import com.example.varun.model.mcqquestionmodel;
 import com.example.varun.service.mcqquestionservice;
 import com.example.varun.service.questionhistoryservice;
@@ -31,7 +33,7 @@ public class mcqquestioncontroller {
 		this.historyService = historyService;
 	}
 
-	// ✅ Admin post question
+	// Admin post question
 	@PostMapping("/add/{grpid}")
 	public ResponseEntity<?> addMcq(@RequestBody List<Quizdto> mcq, @PathVariable int grpid) {
 
@@ -39,28 +41,46 @@ public class mcqquestioncontroller {
 
 	}
 
-	// ✅ Admin view group questions
+	// Admin view group questions
 	@GetMapping("/group/{groupId}")
 	public List<mcqquestionmodel> getMcqsByGroup(@PathVariable Long groupId) {
 		return mcqService.getMcqQuestionsByGroupId(groupId);
 	}
 
-	// ✅ Admin view all questions
+	// Admin view all questions
 	@GetMapping("/all")
 	public List<mcqquestionmodel> getAllMcqs() {
 		return mcqService.getAllMcqQuestions();
 	}
 
-	// ✅ Admin delete
+	// Admin delete
 	@DeleteMapping("/{id}")
 	public String deleteMcq(@PathVariable Long id) {
 		mcqService.deleteMcqQuestion(id);
 		return "MCQ question deleted successfully";
 	}
 
-	// 🔥 STUDENT SIDE (unique shuffled order for each student)
+	// STUDENT SIDE (unique shuffled order for each student)
 	@GetMapping("/student/{studentId}/group/{groupId}")
 	public List<mcqstudentdto> getMcqsForStudent(@PathVariable Long studentId, @PathVariable Long groupId) {
 		return mcqService.getQuestionsForStudent(studentId, groupId);
+	}
+
+	// STUDENT ANALYSIS (Only logged-in student can see)
+
+	@GetMapping("/student/analysis/group/{groupId}")
+	public ResponseEntity<?> getMyAnalysis(@PathVariable Long groupId, Principal principal) {
+
+		if (principal == null) {
+			return ResponseEntity.status(401).body("Unauthorized - Please login");
+		}
+
+		studentanalysisdto analysis = mcqService.getMyMcqAnalysis(principal.getName(), groupId);
+
+		if (analysis == null) {
+			return ResponseEntity.ok("No analysis found");
+		}
+
+		return ResponseEntity.ok(analysis);
 	}
 }
