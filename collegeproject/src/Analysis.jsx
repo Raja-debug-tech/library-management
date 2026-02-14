@@ -42,7 +42,7 @@ const Analysis=()=>{
     return(
         <>
           <style jsx>{`
-            /* ===== CSS VARIABLES & THEME ===== */
+            
           :root {
             --primary-blue: #3b82f6;
             --primary-dark: #1d4ed8;
