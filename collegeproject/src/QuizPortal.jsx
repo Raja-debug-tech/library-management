@@ -36,7 +36,7 @@ const QuizPortal=()=>{
     };
  
     const addquiz=()=>{
-        
+        console.log("i hope this will update ");
         if(formData.correctOption==formData.optionA||
             formData.correctOption==formData.optionB||
             formData.correctOption==formData.optionC||
