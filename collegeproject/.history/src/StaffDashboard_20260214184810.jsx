@@ -69,7 +69,7 @@ const StaffDashboard=()=>{
           left: 0;
           right: 0;
           height: 70px;
-          background: rgba(20, 26, 54, 0.97);
+          background: rgba(255, 255, 255, 0.97);
           backdrop-filter: blur(25px) saturate(1.8);
           display: flex;
           justify-content: space-between;
@@ -195,7 +195,7 @@ const StaffDashboard=()=>{
           top: 70px;
           height: calc(100vh - 70px);
           width: 280px;
-          background: rgba(24, 21, 49, 0.98);
+          background: rgba(255, 255, 255, 0.98);
           backdrop-filter: blur(20px) saturate(1.5);
           box-shadow: 4px 0 30px rgba(102, 126, 234, 0.08);
           padding: 30px 0;
