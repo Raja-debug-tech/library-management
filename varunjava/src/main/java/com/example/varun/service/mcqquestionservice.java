@@ -1,5 +1,6 @@
 package com.example.varun.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -22,26 +23,24 @@ public class mcqquestionservice {
 	}
 
 	public ResponseEntity<?> saveMcqQuestion(List<Quizdto> quiz, long grpid) {
-
+		List<mcqquestionmodel> mcq = new ArrayList<mcqquestionmodel>();
 		groupmodel gm = new groupmodel();
 		gm.setGroupId(grpid);
-
 		for (int i = 0; i < quiz.size(); i++) {
-
 			mcqquestionmodel mcq1 = new mcqquestionmodel();
-
 			mcq1.setGroup(gm);
+
 			mcq1.setQuestion(quiz.get(i).getQuestion());
 			mcq1.setOptionA(quiz.get(i).getOptionA());
 			mcq1.setOptionB(quiz.get(i).getOptionB());
 			mcq1.setOptionC(quiz.get(i).getOptionC());
 			mcq1.setOptionD(quiz.get(i).getOptionD());
 			mcq1.setCorrectOption(quiz.get(i).getCorrectOption());
-
 			mcqRepo.save(mcq1);
 		}
+//		mcq.setPostDate(mcq.getPostDate().now());
+		return ResponseEntity.status(200).body("Quesions Stored in Databse");
 
-		return ResponseEntity.status(200).body("Questions Stored in Database");
 	}
 
 	public List<mcqquestionmodel> getMcqQuestionsByGroupId(Long groupId) {

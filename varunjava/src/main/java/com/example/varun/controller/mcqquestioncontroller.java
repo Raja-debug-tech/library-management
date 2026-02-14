@@ -36,7 +36,9 @@ public class mcqquestioncontroller {
 	// Admin post question
 	@PostMapping("/add/{grpid}")
 	public ResponseEntity<?> addMcq(@RequestBody List<Quizdto> mcq, @PathVariable int grpid) {
+
 		return mcqService.saveMcqQuestion(mcq, grpid);
+
 	}
 
 	// Admin view group questions
