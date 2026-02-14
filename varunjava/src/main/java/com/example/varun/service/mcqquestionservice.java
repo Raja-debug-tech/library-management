@@ -2,10 +2,12 @@ package com.example.varun.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.varun.dto.Quizdto;
 import com.example.varun.dto.mcqstudentdto;
+import com.example.varun.dto.studentanalysisdto;
 import com.example.varun.model.groupmodel;
 import com.example.varun.model.mcqquestionmodel;
 import com.example.varun.repository.mcqquestionrepository;
@@ -19,24 +21,27 @@ public class mcqquestionservice {
 		this.mcqRepo = mcqRepo;
 	}
 
-	public mcqquestionmodel saveMcqQuestion(List<Quizdto> quiz, long grpid) {
-		mcqquestionmodel mcq = new mcqquestionmodel();
+	public ResponseEntity<?> saveMcqQuestion(List<Quizdto> quiz, long grpid) {
+
 		groupmodel gm = new groupmodel();
-		for (int i = 0; i < quiz.size() - 1; i++) {
+		gm.setGroupId(grpid);
 
-			gm.setGroupId(grpid);
-			mcq.setGroup(gm);
+		for (int i = 0; i < quiz.size(); i++) {
 
-			mcq.setQuestion(quiz.get(i).getQuestion());
-			mcq.setOptionA(quiz.get(i).getOptiona());
-			mcq.setOptionB(quiz.get(i).getOptionb());
-			mcq.setOptionC(quiz.get(i).getOptionc());
-			mcq.setOptionD(quiz.get(i).getOptiond());
-			mcq.setCorrectOption(quiz.get(i).getCrtanswer());
+			mcqquestionmodel mcq1 = new mcqquestionmodel();
+
+			mcq1.setGroup(gm);
+			mcq1.setQuestion(quiz.get(i).getQuestion());
+			mcq1.setOptionA(quiz.get(i).getOptionA());
+			mcq1.setOptionB(quiz.get(i).getOptionB());
+			mcq1.setOptionC(quiz.get(i).getOptionC());
+			mcq1.setOptionD(quiz.get(i).getOptionD());
+			mcq1.setCorrectOption(quiz.get(i).getCorrectOption());
+
+			mcqRepo.save(mcq1);
 		}
-//		mcq.setPostDate(mcq.getPostDate().now());
 
-		return mcqRepo.save(mcq);
+		return ResponseEntity.status(200).body("Questions Stored in Database");
 	}
 
 	public List<mcqquestionmodel> getMcqQuestionsByGroupId(Long groupId) {
@@ -52,8 +57,13 @@ public class mcqquestionservice {
 	}
 
 	public List<mcqstudentdto> getQuestionsForStudent(Long studentId, Long groupId) {
-		// TODO Auto-generated method stub
+		// TODO: Your existing logic here
 		return null;
 	}
 
+	// STUDENT ANALYSIS METHOD
+	public studentanalysisdto getMyMcqAnalysis(String loggedEmail, Long groupId) {
+		// TODO: you will implement analysis logic later
+		return null;
+	}
 }

@@ -18,44 +18,44 @@ public class Quizdto {
 		this.question = question;
 	}
 
-	public String getOptiona() {
+	public String getOptionA() {
 		return optionA;
 	}
 
-	public void setOptiona(String optiona) {
-		this.optionA = optiona;
+	public void setOptionA(String optionA) {
+		this.optionA = optionA;
 	}
 
-	public String getOptionb() {
+	public String getOptionB() {
 		return optionB;
 	}
 
-	public void setOptionb(String optionb) {
-		this.optionB = optionb;
+	public void setOptionB(String optionB) {
+		this.optionB = optionB;
 	}
 
-	public String getOptionc() {
+	public String getOptionC() {
 		return optionC;
 	}
 
-	public void setOptionc(String optionc) {
-		this.optionC = optionc;
+	public void setOptionC(String optionC) {
+		this.optionC = optionC;
 	}
 
-	public String getOptiond() {
+	public String getOptionD() {
 		return optionD;
 	}
 
-	public void setOptiond(String optiond) {
-		this.optionD = optiond;
+	public void setOptionD(String optionD) {
+		this.optionD = optionD;
 	}
 
-	public String getCrtanswer() {
+	public String getCorrectOption() {
 		return correctOption;
 	}
 
-	public void setCrtanswer(String crtanswer) {
-		this.correctOption = crtanswer;
+	public void setCorrectOption(String correctOption) {
+		this.correctOption = correctOption;
 	}
 
 }
