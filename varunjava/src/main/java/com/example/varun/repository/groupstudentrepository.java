@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.varun.model.addstudentmodel;
@@ -20,4 +21,8 @@ public interface groupstudentrepository extends JpaRepository<groupstudentmodel,
 	boolean existsByGroupAndStudent(groupmodel group, addstudentmodel student);
 
 	Optional<groupstudentmodel> findByStudent(addstudentmodel student);
+
+	@Query(value = "SELECT * FROM group_students WHERE STUDENT_ID=:stdid", nativeQuery = true)
+	public groupstudentmodel getGroupid(@Param("stdid") long stdid);
+
 }

@@ -26,7 +26,7 @@ public class groupcontroller {
 		this.groupService = groupService;
 	}
 
-	@GetMapping("/{groupId}/students")
+	@GetMapping("/getstudents/{groupId}")
 	public List<addstudentmodel> getStudentsInGroup(@PathVariable Long groupId) {
 		return groupService.getStudentsInGroup(groupId);
 	}
