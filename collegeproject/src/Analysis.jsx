@@ -3,37 +3,27 @@ import {  useState } from "react";
 
 const Analysis=()=>{
 
-    const[stdname,setStdname]=useState();
-    const[number,setNumber]=useState();
+    const[name,setStdname]=useState();
+    const[phone,setNumber]=useState();
     const[isShow,setIsshow]=useState(true);
-    const[val,setVal]=useState({
-        name:'',
-        phone:'',
-        completedtask:'',
-        pendingtask:'',
-        completionrate:''
-    })
+    const[val,setVal]=useState({});
     const [view,setView]=useState(false);
         
     const getApi=async ()=>{
-            const api= await axios.get('http://localhost:8082/api/admin/student',{
-                params:{
-                    stdname:stdname,
-                    number:number
-                }
-            });
+            const api= await axios.get(`http://localhost:8082/api/admin/student-analysis/staffanalysis/${name}/${phone}`);
             const data=await api.data;
             console.log(data);
 
-            setVal(
-                {
-                name:data.name,
-                phone:data.phone,
-                completedtask:data.compltdtask,
-                pendingtask:data.pending,
-                completionrate:data.completionrate
-            }
-            )
+            // setVal(
+            //     {
+            //     name:data.name,
+            //     phone:data.phone,
+            //     completedtask:data.compltdtask,
+            //     pendingtask:data.pending,
+            //     completionrate:data.completionrate
+            // }
+            // )
+            setVal(data);
             setIsshow(false);
             setView(true);
 
@@ -802,7 +792,7 @@ const Analysis=()=>{
         <input 
           type="text" 
           placeholder="Student Name"
-          value={stdname}
+          value={name}
           onChange={(e) => setStdname(e.target.value)} 
         />
       </div>
@@ -810,7 +800,7 @@ const Analysis=()=>{
         <input 
           type="text" 
           placeholder="Phone number"
-          value={number}
+          value={phone}
           onChange={(e) => setNumber(e.target.value)} 
         />
       </div>
@@ -827,15 +817,22 @@ const Analysis=()=>{
     <div className="result-label" name="labelName" aria-label="Name Label">
       Name
     </div>
+   
     <div className="result-value" name="valueName" aria-label="Name Value">
       {val.name || 'N/A'}
+    </div>
+<div className="result-label" name="labelName" aria-label="Name Label">
+      GroupName
+    </div>
+       <div className="result-value" name="valuegroup" aria-label="Pending Tasks Value">
+      {val.groupname || '0'}
     </div>
 
     <div className="result-label" name="labelPhone" aria-label="Phone Label">
       Phone
     </div>
     <div className="result-value" name="valuePhone" aria-label="Phone Value">
-      {val.phone || 'N/A'}
+      {phone || 'N/A'}
     </div>
 
     <div className="result-label" name="labelPending" aria-label="Pending Tasks Label">
@@ -843,21 +840,22 @@ const Analysis=()=>{
     </div>
     
     <div className="result-value" name="valuePending" aria-label="Pending Tasks Value">
-      {val.pendingtask || '0'}
+      {val.pendingnumber || '0'}
     </div>
+
 
     <div className="result-label" name="labelCompleted" aria-label="Completed Tasks Label">
       Completed Task
     </div>
     <div className="result-value" name="valueCompleted" aria-label="Completed Tasks Value">
-      {val.completedtask || '0'}
+      {val.compltednumber || '0'}
     </div>
 
     <div className="result-label" name="labelRatio" aria-label="Completion Ratio Label">
       Completion Ratio
     </div>
     <div className="result-value" name="valueRatio" aria-label="Completion Ratio Value">
-      {val.completionrate || '0%'}
+      {val.compltedratio || '0%'} %
     </div>
   </div>
 
