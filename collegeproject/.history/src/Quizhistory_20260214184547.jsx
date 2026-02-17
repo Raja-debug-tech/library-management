@@ -281,7 +281,7 @@ const Quizhistory=()=>{
 </style>
 
 <div className="container">
-  {!isShow ? (
+  {isShow ? (
     <div className="loading-container">
       <div className="loading-spinner"></div>
       <div className="loading-text">

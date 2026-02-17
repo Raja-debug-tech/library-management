@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 
 const Quizhistory=()=>{
 
-    const [hstry,sethstry]=useState([]);
+    const [hstry,sethstry]=useState([
+]);
     const[showID,setShowid]=useState();
     const[isShow,setIshow]=useState(false);
   
@@ -281,7 +282,7 @@ const Quizhistory=()=>{
 </style>
 
 <div className="container">
-  {!isShow ? (
+  {isShow ? (
     <div className="loading-container">
       <div className="loading-spinner"></div>
       <div className="loading-text">

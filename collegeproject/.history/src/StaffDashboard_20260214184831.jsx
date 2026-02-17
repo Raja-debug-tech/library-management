@@ -195,7 +195,7 @@ const StaffDashboard=()=>{
           top: 70px;
           height: calc(100vh - 70px);
           width: 280px;
-          background: rgba(24, 21, 49, 0.98);
+          background: rgba(255, 255, 255, 0.98);
           backdrop-filter: blur(20px) saturate(1.5);
           box-shadow: 4px 0 30px rgba(102, 126, 234, 0.08);
           padding: 30px 0;
