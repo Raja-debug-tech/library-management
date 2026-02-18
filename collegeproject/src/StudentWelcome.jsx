@@ -6,7 +6,7 @@ const StudentWelcome=()=>{
         <>
         <img src="" alt="" /><span>New College</span>
         <div>
-            Welcome mr. ${name}
+            Welcome mr. {name}
         </div>
         </>
     );
