@@ -838,10 +838,10 @@ const Analysis=()=>{
     <div className="result-label" name="labelPending" aria-label="Pending Tasks Label">
       Pending Task
     </div>
+    
     <div className="result-value" name="valuePending" aria-label="Pending Tasks Value">
       {val.pendingnumber || '0'}
     </div>
-
 
     <div className="result-label" name="labelCompleted" aria-label="Completed Tasks Label">
       Completed Task
