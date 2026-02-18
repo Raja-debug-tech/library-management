@@ -13,6 +13,7 @@ import StudentDash from "./StudentDash";
 import Taketest from "./Taketest";
 import StdAnalysis from "./StdAnalysis";
 import Quizhistory from "./Quizhistory";
+import History from "./History";
 function App(){
 
   const route=createBrowserRouter([
@@ -40,7 +41,8 @@ function App(){
           {path:'quiz/:id', element:<QuizPortal/>},
           {path:'stfview/:id',element:<Stfview/>},
           {path:'creategroup',element:<Creategroup/>},
-          {path:'history',element:<Quizhistory/>}
+          {path:'history',element:<Quizhistory/>},
+          {path:'questions/:id',element:<History/>}
       ]
     },
     {
