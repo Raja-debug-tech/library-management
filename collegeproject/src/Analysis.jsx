@@ -843,7 +843,6 @@ const Analysis=()=>{
       {val.pendingnumber || '0'}
     </div>
 
-
     <div className="result-label" name="labelCompleted" aria-label="Completed Tasks Label">
       Completed Task
     </div>
