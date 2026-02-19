@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,11 +42,15 @@ public class groupcontroller {
 		return groupService.addStudentToGroup(groupId, studentId);
 	}
 
-	@GetMapping("/nongrpstdnt")
+	// delete student
+	@DeleteMapping("/{groupId}/remove-student/{studentId}")
+	public String removeStudentFromGroup(@PathVariable Long groupId, @PathVariable Long studentId) {
+		return groupService.removeStudentFromGroup(groupId, studentId);
+	}
 
+	@GetMapping("/nongrpstdnt")
 	public List<addstudentmodel> nonassignedstudent() {
 		return groupService.studentnotingroup();
-
 	}
 
 	@PostMapping("/creategroup")

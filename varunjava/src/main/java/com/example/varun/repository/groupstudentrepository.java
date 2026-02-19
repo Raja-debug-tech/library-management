@@ -25,4 +25,6 @@ public interface groupstudentrepository extends JpaRepository<groupstudentmodel,
 	@Query(value = "SELECT * FROM group_students WHERE STUDENT_ID=:stdid", nativeQuery = true)
 	public groupstudentmodel getGroupid(@Param("stdid") long stdid);
 
+	// for delete
+	Optional<groupstudentmodel> findByGroupAndStudent(groupmodel group, addstudentmodel student);
 }

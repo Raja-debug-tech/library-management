@@ -47,18 +47,28 @@ public class groupservice {
 			return "Student already exists in this group";
 		}
 
-		groupstudentmodel gs = new groupstudentmodel();
-		gs.setGroup(group);
-		gs.setStudent(student);
-
-		groupStudentRepository.save(gs);
-
 		return "Student added to group successfully";
+	}
+
+	// ✅ NEW DELETE LOGIC
+	public String removeStudentFromGroup(Long groupId, Long studentId) {
+
+		groupmodel group = groupRepository.findById(groupId).orElseThrow(() -> new RuntimeException("Group not found"));
+
+		addstudentmodel student = studentRepository.findById(studentId)
+				.orElseThrow(() -> new RuntimeException("Student not found"));
+
+		groupstudentmodel mapping = groupStudentRepository.findByGroupAndStudent(group, student)
+				.orElseThrow(() -> new RuntimeException("Student is not present in this group"));
+
+		groupStudentRepository.delete(mapping);
+
+		// After deleting mapping, student is automatically "not assigned to any group"
+		return "Student removed from group successfully";
 	}
 
 	public List<addstudentmodel> studentnotingroup() {
 		return studentRepository.nonassigned();
-
 	}
 
 	public ResponseEntity<?> createGroup(String groupname, String grpdesc) {
