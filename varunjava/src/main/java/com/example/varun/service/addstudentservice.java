@@ -5,7 +5,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.example.varun.model.Group_check;
 import com.example.varun.model.addstudentmodel;
+import com.example.varun.repository.Groupcheckrepo;
 import com.example.varun.repository.addstudentrepository;
 
 @Service
@@ -17,6 +19,9 @@ public class addstudentservice {
 	@Autowired
 	private JavaMailSender mailSender;
 
+	@Autowired
+	Groupcheckrepo gcrepo;
+
 	public addstudentmodel addStudent(addstudentmodel student) {
 
 		if (studentRepository.existsByEmail(student.getEmail())) {
@@ -24,6 +29,11 @@ public class addstudentservice {
 		}
 
 		addstudentmodel savedStudent = studentRepository.save(student);
+		long studentid = student.getId();
+		Group_check gc = new Group_check();
+		gc.setStudent_id(studentid);
+		gc.setGroup_id(null);
+		gcrepo.save(gc);
 
 		String username = generateUsername(savedStudent);
 		String password = generatePassword(savedStudent);
