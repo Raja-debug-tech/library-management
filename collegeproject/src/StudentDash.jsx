@@ -1,10 +1,13 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import college_logo from './assets/college_logo.png';
+import { useContext } from "react";
+import Authcontext from "./Authcontext";
 
 const StudentDash = () => {
     const nav = useNavigate();
     const location = useLocation();
     const active = location.pathname.split('/').pop() || '';
+    const {logOut}=useContext(Authcontext);
 
     return (
         <>
@@ -243,7 +246,9 @@ const StudentDash = () => {
                         
                         {/* Logout - Right */}
                         <div className="logout-container">
-                            <button className="logout-btn" onClick={() => nav('/login')}>
+                            <button className="logout-btn" onClick={() => {
+                                logOut();
+                                nav('/login')}}>
                                 Log Out
                             </button>
                         </div>

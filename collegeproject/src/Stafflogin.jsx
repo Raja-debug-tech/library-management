@@ -1,14 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import college_logo from './assets/college_logo.png'
 import { useNavigate } from "react-router-dom";
+import Authcontext from "./Authcontext";
 
 const Stafflogin=()=>{
     const bgImage = new URL(college_logo, import.meta.url).href;
     const[mail,setMail]=useState();
     const[password,setPass]=useState();
     const nav=useNavigate();
-
+    const {logIn}=useContext(Authcontext);
+    const {isLog}=useContext(Authcontext);
     const stafflogin= async()=>{
       if(mail=="admin123@gmail.com"&&password=="admin123"){
             const api= await axios.post('http://localhost:8082/api/auth/stafflogin',null,
@@ -18,7 +20,13 @@ const Stafflogin=()=>{
             const val=api.data;
             console.log(val);
             alert("sccessfully logged in");
-            nav('/');
+            
+               if(isLog){
+                logIn('staff');
+                nav('/');
+            }else{
+              nav('/stafflogin');
+            }
         }else{
           alert("please enter a valid admin name");
         }

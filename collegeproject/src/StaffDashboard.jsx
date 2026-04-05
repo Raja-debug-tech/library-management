@@ -1,10 +1,14 @@
 import { Outlet } from "react-router-dom"
 import college_logo from './assets/college_logo.png'
 import { useNavigate } from "react-router-dom";
+import Authcontext from "./Authcontext";
+import { useContext } from "react";
 
 const StaffDashboard=()=>{
 
     const nav=useNavigate();
+    const {logOut}=useContext(Authcontext);
+    // const {isLog}=useContext(Authcontext);
 
     return(
       
@@ -546,7 +550,9 @@ const StaffDashboard=()=>{
     <div>
       <img src={college_logo} alt="College Logo" />
     </div>
-    <div onClick={()=>nav('/')}>Logout</div>
+    <div onClick={()=>{
+      logOut();
+      nav('/')}}>Logout</div>
   </nav>
 
   <aside>
@@ -555,6 +561,9 @@ const StaffDashboard=()=>{
     <div onClick={()=>nav('analysis')}>Analysis</div>
     {/* <div onClick={()=>nav('quiz')}>Question Portal</div> */}
     <div onClick={()=>nav('history')}>History</div>
+    {/* <div onClick={()=>{
+      
+    }}>Logout</div> */}
   </aside>
  
   
