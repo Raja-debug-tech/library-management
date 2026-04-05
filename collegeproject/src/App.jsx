@@ -14,25 +14,34 @@ import Taketest from "./Taketest";
 import StdAnalysis from "./StdAnalysis";
 import Quizhistory from "./Quizhistory";
 import History from "./History";
+import Dude from "./dude";
+import AuthGuard from "./AuthGuard";
 function App(){
 
   const route=createBrowserRouter([
+    {path:'/',
+      element:<Stafflogin/>
+    },
     {
       path:'/staff',
       element:<StaffDashboard/>
     },
 
-    {
-      path:'/stafflogin',
-      element:<Stafflogin/>
-    },
+    // {
+    //   path:'/stafflogin',
+    //   element:<Stafflogin/>
+    // },
     {
       path:'/studentlogin',
       element:<Studentlogin/>
     },
     {
       path:'/staffdash',
-      element:<StaffDashboard/>,
+      element:(
+        <AuthGuard allowedRoles={['staff']}>
+          <StaffDashboard/>
+          </AuthGuard>
+      ),
       children:[
           { index: true, element: <div>Dashboard Home</div> },
           {path:'addstudent', element:<Addstudent/>},
@@ -53,7 +62,7 @@ function App(){
       element:<StudentWelcome/>
     },{
       // path:'/studentdash/:studentname',
-      path:'/',
+      // path:'/',
       element:<StudentDash/>,
       children:[
       {path:'taketest',element:<Taketest/>},

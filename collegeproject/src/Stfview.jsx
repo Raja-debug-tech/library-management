@@ -299,7 +299,7 @@ function Stfview() {
                                                     className="btn btn-danger" 
                                                     onClick={() => deletes(e.id)}
                                                 >
-                                                     Delete                                                </button>
+                                                     Delete          </button>
                                             </td>
                                         </tr>
                                     ))}

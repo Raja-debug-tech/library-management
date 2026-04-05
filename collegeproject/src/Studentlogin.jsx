@@ -1,13 +1,16 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import college_logo from './assets/college_logo.png'
 import { useNavigate } from "react-router-dom";
+import Authcontext from "./Authcontext";
 const Studentlogin=()=>{
 
     const[studentname,setstdName]=useState();
     const[password,setPass]=useState();
     const nav=useNavigate();
-        const bgImage = new URL(college_logo, import.meta.url).href;
+    const bgImage = new URL(college_logo, import.meta.url).href;
+    const {isLog}=useContext(Authcontext);
+    const {logIn}=useContext(Authcontext);
 
     const studentlogin= async()=>{
 
@@ -18,8 +21,13 @@ const Studentlogin=()=>{
         }});
         const val=api.data;
         console.log(val);
+        logIn('student');
+        if(isLog){
           nav(`/studentwelcome/`+studentname);
-    }
+          }else{
+            nav(`/studentlogin`);
+          }
+        }
     
 
     return(
